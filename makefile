@@ -1,38 +1,28 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         ::::::::             #
-#    makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: dritsema <dritsema@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2022/04/04 18:06:41 by dritsema      #+#    #+#                  #
-#    Updated: 2022/04/04 18:50:51 by dritsema      ########   odam.nl          #
-#                                                                              #
-# **************************************************************************** #
-
-
-# name of the output file
 NAME = main
 
-# Name of the entry point file
-SRCS = main.c
+
+SRCS =	main.c \
+		libtest.c
+
+
+INPUT_PATH = $(patsubst %.c, $(SRC_DIR)/%.c, $(SRCS))
 
 
 SRC_DIR = ./src
 BUILD_DIR = ./build
 
-INPUT_PATH = $(SRC_DIR)/$(SRCS)
-OUTPUT_PATH = $(BUILD_DIR)/$(NAME)
+
+BIN_PATH = $(BUILD_DIR)/$(NAME)
 
 # Compiler flags
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g 
 
 
-all: $(OUTPUT_PATH) $(INPUT_PATH)
+all: $(BIN_PATH)
 
 # deletes object files
 clean:
-	rm -f $(OUTPUT_PATH)
+	rm -f $(BIN_PATH)
 
 
 # deletes build
@@ -43,6 +33,11 @@ fclean: clean
 re: clean all
 
 
+run:
+	$(BIN_PATH)
 
-$(OUTPUT_PATH):
-	gcc -o $(OUTPUT_PATH) $(INPUT_PATH) $(FLAGS)
+
+
+$(BIN_PATH): $(INPUT_PATH)
+	gcc -o $(BIN_PATH) $(INPUT_PATH) $(FLAGS)
+	
