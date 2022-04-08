@@ -26,14 +26,11 @@ OBJ_FILES = $(subst $(SRC_DIR), $(OBJ_DIR), $(patsubst %.c,%.o,$(SRC_FILES)))
 DEP_FILES = $(subst $(SRC_DIR), $(OBJ_DIR), $(patsubst %.c,%.d,$(SRC_FILES)))
 
 
-
 all: $(BINARY)
-
 
 
 $(BINARY): $(OBJ_FILES)
 	$(CC) -o $@ $^
-
 
 
 # % regex wildcard.
@@ -51,12 +48,7 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 
 
 
-re: fclean all
-
-
-# fclean should clean the arvice
-fclean: clean
-	@echo "Cleaned archive"
+re: clean all
 
 
 # cleans the object files
