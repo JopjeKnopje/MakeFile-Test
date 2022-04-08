@@ -1,3 +1,0 @@
-archive library tutorial
-
-https://iq.opengenus.org/shared-vs-archive-library-cpp/
